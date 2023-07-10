@@ -1,0 +1,3 @@
+D:/work/stm32/Press_ADC/cmake-build-debug/CMakeFiles/Press_ADC.elf.dir
+D:/work/stm32/Press_ADC/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/work/stm32/Press_ADC/cmake-build-debug/CMakeFiles/rebuild_cache.dir

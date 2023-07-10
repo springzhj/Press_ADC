@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/My_code/yehuo/bsp_debug_usart.c" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/My_code/yehuo/bsp_debug_usart.h" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/My_code/yehuo/bsp_ili9341_lcd.c" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/My_code/yehuo/bsp_ili9341_lcd.h" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/My_code/yehuo/bsp_led.c" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/My_code/yehuo/bsp_led.h" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/My_code/yehuo/bsp_spi_flash.c" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/My_code/yehuo/bsp_spi_flash.h" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/My_code/yehuo/fonts.c" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/My_code/yehuo/fonts.h" charset="GBK" />
+  </component>
+</project>
