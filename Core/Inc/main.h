@@ -57,6 +57,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define DT_Pin GPIO_PIN_2
+#define DT_GPIO_Port GPIOA
+#define SCK_Pin GPIO_PIN_3
+#define SCK_GPIO_Port GPIOA
 #define ILI_CS_Pin GPIO_PIN_4
 #define ILI_CS_GPIO_Port GPIOC
 #define ILI_RD_Pin GPIO_PIN_5
@@ -65,10 +69,6 @@ void Error_Handler(void);
 #define ILI_WR_GPIO_Port GPIOC
 #define ILI_DC_Pin GPIO_PIN_7
 #define ILI_DC_GPIO_Port GPIOC
-#define SCK_Pin GPIO_PIN_11
-#define SCK_GPIO_Port GPIOA
-#define DT_Pin GPIO_PIN_12
-#define DT_GPIO_Port GPIOA
 #define ILI_BK_Pin GPIO_PIN_2
 #define ILI_BK_GPIO_Port GPIOD
 

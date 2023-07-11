@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "spi.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -31,6 +32,7 @@
 #include "bsp_ili9341_lcd.h"
 #include "HX711.h"
 #include "bsp_spi_flash.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -64,6 +66,12 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 static void LCD_Test(void);
 static void Delay ( __IO uint32_t nCount );
+static uint32_t value;
+static uint32_t i=0;
+static char dispBuff[100];
+extern uint32_t maopi;
+extern uint32_t weight_zheng;
+extern uint8_t weight_xiao;
 
 void Printf_Charater(void)   ;
 
@@ -100,11 +108,12 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI1_Init();
   MX_USART1_UART_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
     LED_GPIO_Config();
     DEBUG_USART_Config();
     ILI9341_Init ();
-    printf("\r\n ********** 液晶屏中文显示程序（任意大小�?*********** \r\n");
+    printf("\r\n ********** 液晶屏中文显示程序（任意大小�?????*********** \r\n");
     printf("\r\n 若汉字显示不正常，请阅读工程中的readme.txt文件说明，根据要求给FLASH重刷字模数据\r\n");
     if(lcdid == LCDID_ILI9341)
     {
@@ -117,18 +126,25 @@ int main(void)
 
     Printf_Charater();
 
-
+    maopi = Read_Weigh();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+      weight_get();
+      LCD_SetTextColor(GREEN);
+     // 使用c标准库把变量转化成字符串
+      sprintf(dispBuff,"显示变量: %d ",weight_zheng);
+      LCD_ClearLine(LINE(5));	//清除单行文字
+      ILI9341_DispStringLine_EN_CH(LINE(5),dispBuff);
       LED1(0);
-      LCD_Test();
+      HAL_Delay(500);
       LED1(1);
       HAL_Delay(500);
     /* USER CODE END WHILE */
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -174,7 +190,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-/*用于测试各种液晶的函数*/
+/*用于测试各种液晶的函�????*/
 void LCD_Test(void)
 {
     /*演示显示变量*/
@@ -186,10 +202,10 @@ void LCD_Test(void)
     LCD_SetFont(&Font8x16);
     LCD_SetColors(RED,BLACK);
 
-    ILI9341_Clear(0,0,LCD_X_LENGTH,LCD_Y_LENGTH);	/* 清屏，显示全黑 */
-    /********显示字符串示例*******/
+    ILI9341_Clear(0,0,LCD_X_LENGTH,LCD_Y_LENGTH);	/* 清屏，显示全�???? */
+    /********显示字符串示�????*******/
     ILI9341_DispStringLine_EN_CH(LINE(0),"野火YH");
-    //显示指定大小的字符
+    //显示指定大小的字�????
     ILI9341_DisplayStringEx(0,1*24,24,24,(uint8_t *)"野火YH",0);
     ILI9341_DisplayStringEx(2*48,0*48,48,48,(uint8_t *)"野火YH",0);
 
@@ -197,14 +213,14 @@ void LCD_Test(void)
     LCD_SetTextColor(GREEN);
 
     /*使用c标准库把变量转化成字符串*/
-    sprintf(dispBuff,"显示变量： %d ",testCNT);
+    sprintf(dispBuff,"显示变量�???? %d ",testCNT);
     LCD_ClearLine(LINE(5));	/* 清除单行文字 */
 
-    /*然后显示该字符串即可，其它变量也是这样处理*/
+    /*然后显示该字符串即可，其它变量也是这样处�????*/
     ILI9341_DispStringLine_EN_CH(LINE(5),dispBuff);
 
     /*******显示图形示例******/
-    /* 画直线 */
+    /* 画直�???? */
 
     LCD_ClearLine(LINE(7));/* 清除单行文字 */
     LCD_SetTextColor(BLUE);
@@ -225,10 +241,10 @@ void LCD_Test(void)
 
     Delay(0xFFFFFF);
 
-    ILI9341_Clear(0,16*8,LCD_X_LENGTH,LCD_Y_LENGTH-16*8);	/* 清屏，显示全黑 */
+    ILI9341_Clear(0,16*8,LCD_X_LENGTH,LCD_Y_LENGTH-16*8);	/* 清屏，显示全�???? */
 
 
-    /*画矩形*/
+    /*画矩�????*/
 
     LCD_ClearLine(LINE(7));	/* 清除单行文字 */
     LCD_SetTextColor(BLUE);
@@ -246,7 +262,7 @@ void LCD_Test(void)
 
     Delay(0xFFFFFF);
 
-    ILI9341_Clear(0,16*8,LCD_X_LENGTH,LCD_Y_LENGTH-16*8);	/* 清屏，显示全黑 */
+    ILI9341_Clear(0,16*8,LCD_X_LENGTH,LCD_Y_LENGTH-16*8);	/* 清屏，显示全�???? */
 
     /* 画圆 */
     LCD_ClearLine(LINE(7));	/* 清除单行文字 */
@@ -265,15 +281,15 @@ void LCD_Test(void)
 
     Delay(0xFFFFFF);
 
-    ILI9341_Clear(0,16*8,LCD_X_LENGTH,LCD_Y_LENGTH-16*8);	/* 清屏，显示全黑 */
+    ILI9341_Clear(0,16*8,LCD_X_LENGTH,LCD_Y_LENGTH-16*8);	/* 清屏，显示全�???? */
 
 }
 
 
 /**
-  * @brief  简单延时函数
-  * @param  nCount ：延时计数值
-  * @retval 无
+  * @brief  �????单延时函�????
+  * @param  nCount ：延时计数�??
+  * @retval �????
   */
 static void Delay ( __IO uint32_t nCount )
 {
@@ -283,9 +299,9 @@ static void Delay ( __IO uint32_t nCount )
 
 
 
-/*"当"字符的字模16x16 */
+/*"�????"字符的字�????16x16 */
 unsigned char charater_matrix[] =
-        { /*"当",0*/
+        { /*"�????",0*/
                 0x01,0x00,0x21,0x08,0x11,0x08,0x09,0x10,0x09,0x20,0x01,0x00,0x7F,0xF8,0x00,	0x08,
                 0x00,0x08,0x00,0x08,0x3F,0xF8,0x00,0x08,0x00,0x08,0x00,0x08,0x7F,0xF8,0x00,0x08,
 
@@ -295,41 +311,41 @@ void Printf_Charater(void)
     int i,j;
     unsigned char kk;
 
-    /*i用作行计数*/
+    /*i用作行计�????*/
     for ( i=0;i<16;i++)
     {
-        /*j用作一字节内数据的移位计数*/
-        /*一行像素的第一个字节*/
+        /*j用作�????字节内数据的移位计数*/
+        /*�????行像素的第一个字�????*/
         for(j=0; j<8; j++)
         {
-            /*一个数据位一个数据位地处理*/
-            kk = charater_matrix[2*i] << j ;  //左移J位
+            /*�????个数据位�????个数据位地处�????*/
+            kk = charater_matrix[2*i] << j ;  //左移J�????
             if( kk & 0x80)
             {
-                printf("*"); //如果最高位为1，输出*号，表示笔迹
+                printf("*"); //如果�????高位�????1，输�????*号，表示笔迹
             }
             else
             {
-                printf(" "); //如果最高位为0，输出空格，表示空白
+                printf(" "); //如果�????高位�????0，输出空格，表示空白
             }
         }
-        /*一行像素的第二个字节*/
+        /*�????行像素的第二个字�????*/
         for(j=0; j<8; j++)
         {
-            kk = charater_matrix[2*i+1] << j ;  //左移J位
+            kk = charater_matrix[2*i+1] << j ;  //左移J�????
 
             if( kk & 0x80)
             {
-                printf("*"); //如果最高位为1，输出*号，表示笔迹
+                printf("*"); //如果�????高位�????1，输�????*号，表示笔迹
             }
             else
             {
-                printf(" "); //如果最高位为0，输出空格，表示空白
+                printf(" "); //如果�????高位�????0，输出空格，表示空白
             }
         }
         printf("\n");    //输出完一行像素，换行
     }
-    printf("\n\n"); 		//一个字输出完毕
+    printf("\n\n"); 		//�????个字输出完毕
 }
 
 /* USER CODE END 4 */
