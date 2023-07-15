@@ -19,7 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "spi.h"
-
+#include "bsp_spi_flash.h"
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
@@ -61,37 +61,39 @@ void MX_SPI1_Init(void)
 
 void HAL_SPI_MspInit(SPI_HandleTypeDef* spiHandle)
 {
+  GPIO_InitTypeDef  GPIO_InitStruct;
 
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-  if(spiHandle->Instance==SPI1)
-  {
-  /* USER CODE BEGIN SPI1_MspInit 0 */
-//
-  /* USER CODE END SPI1_MspInit 0 */
-    /* SPI1 clock enable */
-    __HAL_RCC_SPI1_CLK_ENABLE();
+  /*##-1- Enable peripherals and GPIO Clocks #################################*/
+  /* Enable GPIO TX/RX clock */
+  SPIx_SCK_GPIO_CLK_ENABLE();
+  SPIx_MISO_GPIO_CLK_ENABLE();
+  SPIx_MOSI_GPIO_CLK_ENABLE();
+  SPIx_CS_GPIO_CLK_ENABLE();
+  /* Enable SPI clock */
+  SPIx_CLK_ENABLE();
 
-    __HAL_RCC_GPIOA_CLK_ENABLE();
-    /**SPI1 GPIO Configuration
-    PA4     ------> SPI1_NSS
-    PA5     ------> SPI1_SCK
-    PA6     ------> SPI1_MISO
-    PA7     ------> SPI1_MOSI
-    */
-    GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_7;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  /*##-2- Configure peripheral GPIO ##########################################*/
+  /* SPI SCK GPIO pin configuration  */
+  GPIO_InitStruct.Pin       = SPIx_SCK_PIN;
+  GPIO_InitStruct.Mode      = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull      = GPIO_PULLUP;
+  GPIO_InitStruct.Speed     = GPIO_SPEED_FREQ_HIGH;
 
-    GPIO_InitStruct.Pin = GPIO_PIN_6;
-    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /* USER CODE BEGIN SPI1_MspInit 1 */
-//
-  /* USER CODE END SPI1_MspInit 1 */
-  }
+  HAL_GPIO_Init(SPIx_SCK_GPIO_PORT, &GPIO_InitStruct);
+
+  /* SPI MISO GPIO pin configuration  */
+  GPIO_InitStruct.Pin = SPIx_MISO_PIN;
+  HAL_GPIO_Init(SPIx_MISO_GPIO_PORT, &GPIO_InitStruct);
+
+  /* SPI MOSI GPIO pin configuration  */
+  GPIO_InitStruct.Pin = SPIx_MOSI_PIN;
+  HAL_GPIO_Init(SPIx_MOSI_GPIO_PORT, &GPIO_InitStruct);
+
+  GPIO_InitStruct.Pin = FLASH_CS_PIN ;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  HAL_GPIO_Init(FLASH_CS_GPIO_PORT, &GPIO_InitStruct);
+
 }
 
 void HAL_SPI_MspDeInit(SPI_HandleTypeDef* spiHandle)

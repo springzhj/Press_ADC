@@ -113,8 +113,8 @@ int main(void)
     LED_GPIO_Config();
     DEBUG_USART_Config();
     ILI9341_Init ();
-    printf("\r\n ********** æ¶²æ™¶å±ä¸­æ–‡æ˜¾ç¤ºç¨‹åºï¼ˆä»»æ„å¤§å°ï¿½?????*********** \r\n");
-    printf("\r\n è‹¥æ±‰å­—æ˜¾ç¤ºä¸æ­£å¸¸ï¼Œè¯·é˜…è¯»å·¥ç¨‹ä¸­çš„readme.txtæ–‡ä»¶è¯´æ˜ï¼Œæ ¹æ®è¦æ±‚ç»™FLASHé‡åˆ·å­—æ¨¡æ•°æ®\r\n");
+    printf("\r\n ********** Òº¾§ÆÁÖĞÎÄÏÔÊ¾³ÌĞò£¨ÈÎÒâ´óĞ¡??????*********** \r\n");
+    printf("\r\n Èôºº×ÖÏÔÊ¾²»Õı³££¬ÇëÔÄ¶Á¹¤³ÌÖĞµÄreadme.txtÎÄ¼şËµÃ÷£¬¸ù¾İÒªÇó¸øFLASHÖØË¢×ÖÄ£Êı¾İ\r\n");
     if(lcdid == LCDID_ILI9341)
     {
         ILI9341_GramScan ( 6 );
@@ -126,23 +126,24 @@ int main(void)
 
     Printf_Charater();
 
-    maopi = Read_Weigh();
+    //maopi = Read_Weigh();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-      weight_get();
-      LCD_SetTextColor(GREEN);
-     // ä½¿ç”¨cæ ‡å‡†åº“æŠŠå˜é‡è½¬åŒ–æˆå­—ç¬¦ä¸²
-      sprintf(dispBuff,"æ˜¾ç¤ºå˜é‡: %d ",weight_zheng);
-      LCD_ClearLine(LINE(5));	//æ¸…é™¤å•è¡Œæ–‡å­—
-      ILI9341_DispStringLine_EN_CH(LINE(5),dispBuff);
-      LED1(0);
-      HAL_Delay(500);
-      LED1(1);
-      HAL_Delay(500);
+//     // weight_get();
+//      LCD_SetTextColor(GREEN);
+//     // Ê¹ÓÃc±ê×¼¿â°Ñ±äÁ¿×ª»¯³É×Ö·û´®
+//      sprintf(dispBuff,"ÏÔÊ¾±äÁ¿: %d ",weight_zheng);
+//      LCD_ClearLine(LINE(5));	//Çå³ıµ¥ĞĞÎÄ×Ö
+//      ILI9341_DispStringLine_EN_CH(LINE(5),dispBuff);
+//      LED1(0);
+//      HAL_Delay(500);
+//      LED1(1);
+//      HAL_Delay(500);
+      LCD_Test();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -190,10 +191,10 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-/*ç”¨äºæµ‹è¯•å„ç§æ¶²æ™¶çš„å‡½ï¿½????*/
+/*ÓÃÓÚ²âÊÔ¸÷ÖÖÒº¾§µÄº¯?????*/
 void LCD_Test(void)
 {
-    /*æ¼”ç¤ºæ˜¾ç¤ºå˜é‡*/
+    /*ÑİÊ¾ÏÔÊ¾±äÁ¿*/
     static uint8_t testCNT = 0;
     char dispBuff[100];
 
@@ -202,30 +203,30 @@ void LCD_Test(void)
     LCD_SetFont(&Font8x16);
     LCD_SetColors(RED,BLACK);
 
-    ILI9341_Clear(0,0,LCD_X_LENGTH,LCD_Y_LENGTH);	/* æ¸…å±ï¼Œæ˜¾ç¤ºå…¨ï¿½???? */
-    /********æ˜¾ç¤ºå­—ç¬¦ä¸²ç¤ºï¿½????*******/
-    ILI9341_DispStringLine_EN_CH(LINE(0),"é‡ç«YH");
-    //æ˜¾ç¤ºæŒ‡å®šå¤§å°çš„å­—ï¿½????
-    ILI9341_DisplayStringEx(0,1*24,24,24,(uint8_t *)"é‡ç«YH",0);
-    ILI9341_DisplayStringEx(2*48,0*48,48,48,(uint8_t *)"é‡ç«YH",0);
+    ILI9341_Clear(0,0,LCD_X_LENGTH,LCD_Y_LENGTH);	/* ÇåÆÁ£¬ÏÔÊ¾È«????? */
+    /********ÏÔÊ¾×Ö·û´®Ê¾?????*******/
+    ILI9341_DispStringLine_EN_CH(LINE(0),"Ò°»ğYH");
+    //ÏÔÊ¾Ö¸¶¨´óĞ¡µÄ×Ö?????
+    ILI9341_DisplayStringEx(0,1*24,24,24,(uint8_t *)"Ò°»ğYH",0);
+    ILI9341_DisplayStringEx(2*48,0*48,48,48,(uint8_t *)"Ò°»ğYH",0);
 
-    /********æ˜¾ç¤ºå˜é‡ç¤ºä¾‹*******/
+    /********ÏÔÊ¾±äÁ¿Ê¾Àı*******/
     LCD_SetTextColor(GREEN);
 
-    /*ä½¿ç”¨cæ ‡å‡†åº“æŠŠå˜é‡è½¬åŒ–æˆå­—ç¬¦ä¸²*/
-    sprintf(dispBuff,"æ˜¾ç¤ºå˜é‡ï¿½???? %d ",testCNT);
-    LCD_ClearLine(LINE(5));	/* æ¸…é™¤å•è¡Œæ–‡å­— */
+    /*Ê¹ÓÃc±ê×¼¿â°Ñ±äÁ¿×ª»¯³É×Ö·û´®*/
+    sprintf(dispBuff,"ÏÔÊ¾±äÁ¿????? %d ",testCNT);
+    LCD_ClearLine(LINE(5));	/* Çå³ıµ¥ĞĞÎÄ×Ö */
 
-    /*ç„¶åæ˜¾ç¤ºè¯¥å­—ç¬¦ä¸²å³å¯ï¼Œå…¶å®ƒå˜é‡ä¹Ÿæ˜¯è¿™æ ·å¤„ï¿½????*/
+    /*È»ºóÏÔÊ¾¸Ã×Ö·û´®¼´¿É£¬ÆäËü±äÁ¿Ò²ÊÇÕâÑù´¦?????*/
     ILI9341_DispStringLine_EN_CH(LINE(5),dispBuff);
 
-    /*******æ˜¾ç¤ºå›¾å½¢ç¤ºä¾‹******/
-    /* ç”»ç›´ï¿½???? */
+    /*******ÏÔÊ¾Í¼ĞÎÊ¾Àı******/
+    /* »­Ö±????? */
 
-    LCD_ClearLine(LINE(7));/* æ¸…é™¤å•è¡Œæ–‡å­— */
+    LCD_ClearLine(LINE(7));/* Çå³ıµ¥ĞĞÎÄ×Ö */
     LCD_SetTextColor(BLUE);
 
-    ILI9341_DispStringLine_EN_CH(LINE(7),"ç”»ç›´çº¿ï¼š");
+    ILI9341_DispStringLine_EN_CH(LINE(7),"»­Ö±Ïß£º");
 
     LCD_SetTextColor(RED);
     ILI9341_DrawLine(50,170,210,230);
@@ -241,15 +242,15 @@ void LCD_Test(void)
 
     Delay(0xFFFFFF);
 
-    ILI9341_Clear(0,16*8,LCD_X_LENGTH,LCD_Y_LENGTH-16*8);	/* æ¸…å±ï¼Œæ˜¾ç¤ºå…¨ï¿½???? */
+    ILI9341_Clear(0,16*8,LCD_X_LENGTH,LCD_Y_LENGTH-16*8);	/* ÇåÆÁ£¬ÏÔÊ¾È«????? */
 
 
-    /*ç”»çŸ©ï¿½????*/
+    /*»­¾Ø?????*/
 
-    LCD_ClearLine(LINE(7));	/* æ¸…é™¤å•è¡Œæ–‡å­— */
+    LCD_ClearLine(LINE(7));	/* Çå³ıµ¥ĞĞÎÄ×Ö */
     LCD_SetTextColor(BLUE);
 
-    ILI9341_DispStringLine_EN_CH(LINE(7),"ç”»çŸ©å½¢ï¼š");
+    ILI9341_DispStringLine_EN_CH(LINE(7),"»­¾ØĞÎ£º");
 
     LCD_SetTextColor(RED);
     ILI9341_DrawRectangle(50,200,100,30,1);
@@ -262,13 +263,13 @@ void LCD_Test(void)
 
     Delay(0xFFFFFF);
 
-    ILI9341_Clear(0,16*8,LCD_X_LENGTH,LCD_Y_LENGTH-16*8);	/* æ¸…å±ï¼Œæ˜¾ç¤ºå…¨ï¿½???? */
+    ILI9341_Clear(0,16*8,LCD_X_LENGTH,LCD_Y_LENGTH-16*8);	/* ÇåÆÁ£¬ÏÔÊ¾È«????? */
 
-    /* ç”»åœ† */
-    LCD_ClearLine(LINE(7));	/* æ¸…é™¤å•è¡Œæ–‡å­— */
+    /* »­Ô² */
+    LCD_ClearLine(LINE(7));	/* Çå³ıµ¥ĞĞÎÄ×Ö */
     LCD_SetTextColor(BLUE);
 
-    ILI9341_DispStringLine_EN_CH(LINE(7),"ç”»åœ†");
+    ILI9341_DispStringLine_EN_CH(LINE(7),"»­Ô²");
 
     LCD_SetTextColor(RED);
     ILI9341_DrawCircle(100,200,20,0);
@@ -281,15 +282,15 @@ void LCD_Test(void)
 
     Delay(0xFFFFFF);
 
-    ILI9341_Clear(0,16*8,LCD_X_LENGTH,LCD_Y_LENGTH-16*8);	/* æ¸…å±ï¼Œæ˜¾ç¤ºå…¨ï¿½???? */
+    ILI9341_Clear(0,16*8,LCD_X_LENGTH,LCD_Y_LENGTH-16*8);	/* ÇåÆÁ£¬ÏÔÊ¾È«????? */
 
 }
 
 
 /**
-  * @brief  ï¿½????å•å»¶æ—¶å‡½ï¿½????
-  * @param  nCount ï¼šå»¶æ—¶è®¡æ•°ï¿½??
-  * @retval ï¿½????
+  * @brief  ?????µ¥ÑÓÊ±º¯?????
+  * @param  nCount £ºÑÓÊ±¼ÆÊı???
+  * @retval ?????
   */
 static void Delay ( __IO uint32_t nCount )
 {
@@ -299,9 +300,9 @@ static void Delay ( __IO uint32_t nCount )
 
 
 
-/*"ï¿½????"å­—ç¬¦çš„å­—ï¿½????16x16 */
+/*"?????"×Ö·ûµÄ×Ö?????16x16 */
 unsigned char charater_matrix[] =
-        { /*"ï¿½????",0*/
+        { /*"?????",0*/
                 0x01,0x00,0x21,0x08,0x11,0x08,0x09,0x10,0x09,0x20,0x01,0x00,0x7F,0xF8,0x00,	0x08,
                 0x00,0x08,0x00,0x08,0x3F,0xF8,0x00,0x08,0x00,0x08,0x00,0x08,0x7F,0xF8,0x00,0x08,
 
@@ -311,41 +312,41 @@ void Printf_Charater(void)
     int i,j;
     unsigned char kk;
 
-    /*iç”¨ä½œè¡Œè®¡ï¿½????*/
+    /*iÓÃ×÷ĞĞ¼Æ?????*/
     for ( i=0;i<16;i++)
     {
-        /*jç”¨ä½œï¿½????å­—èŠ‚å†…æ•°æ®çš„ç§»ä½è®¡æ•°*/
-        /*ï¿½????è¡Œåƒç´ çš„ç¬¬ä¸€ä¸ªå­—ï¿½????*/
+        /*jÓÃ×÷?????×Ö½ÚÄÚÊı¾İµÄÒÆÎ»¼ÆÊı*/
+        /*?????ĞĞÏñËØµÄµÚÒ»¸ö×Ö?????*/
         for(j=0; j<8; j++)
         {
-            /*ï¿½????ä¸ªæ•°æ®ä½ï¿½????ä¸ªæ•°æ®ä½åœ°å¤„ï¿½????*/
-            kk = charater_matrix[2*i] << j ;  //å·¦ç§»Jï¿½????
+            /*?????¸öÊı¾İÎ»?????¸öÊı¾İÎ»µØ´¦?????*/
+            kk = charater_matrix[2*i] << j ;  //×óÒÆJ?????
             if( kk & 0x80)
             {
-                printf("*"); //å¦‚æœï¿½????é«˜ä½ï¿½????1ï¼Œè¾“ï¿½????*å·ï¼Œè¡¨ç¤ºç¬”è¿¹
+                printf("*"); //Èç¹û?????¸ßÎ»?????1£¬Êä?????*ºÅ£¬±íÊ¾±Ê¼£
             }
             else
             {
-                printf(" "); //å¦‚æœï¿½????é«˜ä½ï¿½????0ï¼Œè¾“å‡ºç©ºæ ¼ï¼Œè¡¨ç¤ºç©ºç™½
+                printf(" "); //Èç¹û?????¸ßÎ»?????0£¬Êä³ö¿Õ¸ñ£¬±íÊ¾¿Õ°×
             }
         }
-        /*ï¿½????è¡Œåƒç´ çš„ç¬¬äºŒä¸ªå­—ï¿½????*/
+        /*?????ĞĞÏñËØµÄµÚ¶ş¸ö×Ö?????*/
         for(j=0; j<8; j++)
         {
-            kk = charater_matrix[2*i+1] << j ;  //å·¦ç§»Jï¿½????
+            kk = charater_matrix[2*i+1] << j ;  //×óÒÆJ?????
 
             if( kk & 0x80)
             {
-                printf("*"); //å¦‚æœï¿½????é«˜ä½ï¿½????1ï¼Œè¾“ï¿½????*å·ï¼Œè¡¨ç¤ºç¬”è¿¹
+                printf("*"); //Èç¹û?????¸ßÎ»?????1£¬Êä?????*ºÅ£¬±íÊ¾±Ê¼£
             }
             else
             {
-                printf(" "); //å¦‚æœï¿½????é«˜ä½ï¿½????0ï¼Œè¾“å‡ºç©ºæ ¼ï¼Œè¡¨ç¤ºç©ºç™½
+                printf(" "); //Èç¹û?????¸ßÎ»?????0£¬Êä³ö¿Õ¸ñ£¬±íÊ¾¿Õ°×
             }
         }
-        printf("\n");    //è¾“å‡ºå®Œä¸€è¡Œåƒç´ ï¼Œæ¢è¡Œ
+        printf("\n");    //Êä³öÍêÒ»ĞĞÏñËØ£¬»»ĞĞ
     }
-    printf("\n\n"); 		//ï¿½????ä¸ªå­—è¾“å‡ºå®Œæ¯•
+    printf("\n\n"); 		//?????¸ö×ÖÊä³öÍê±Ï
 }
 
 /* USER CODE END 4 */

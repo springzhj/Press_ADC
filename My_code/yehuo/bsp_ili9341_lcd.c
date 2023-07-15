@@ -48,7 +48,35 @@ static uint16_t               ILI9341_Read_PixelData      ( void );
 
 
 
+/**
+* @brief 控制io输出的方向
+* @param io_status : 1 : out  0：in
+*/
+void ILI9341_CHANGE_IO(uint8_t io_status)
+{
+     static GPIO_InitTypeDef GPIO_Initure = {.Speed = GPIO_SPEED_FREQ_HIGH, .Pin = ILI9341_DATA_PIN,.Pull = GPIO_PULLUP};
+     if (io_status == 1)
+     {
+//     GPIO_Initure.Mode = GPIO_MODE_OUTPUT_PP; // 推挽输出
+//     HAL_GPIO_Init(ILI9341_DATA_PORT, &GPIO_Initure);
+//         	ILI9341_DATA_PORT->CRL=0X33333333; // 上拉输出
+//	ILI9341_DATA_PORT->CRH=0X33333333; // 上拉输出
+//	ILI9341_DATA_PORT->ODR=0XFFFF;    //全部输出高
+         ILI9341_DATA_PORT->CRL &= ~(GPIO_CRL_MODE0 | GPIO_CRL_CNF0);
+         ILI9341_DATA_PORT->CRL |= GPIO_CRL_MODE0_1; // 设置IO引脚输出电平
 
+    }
+     else
+     {
+//    GPIO_Initure.Mode = GPIO_MODE_INPUT; // 输入
+//    HAL_GPIO_Init(ILI9341_DATA_PORT, &GPIO_Initure);
+//          	ILI9341_DATA_PORT->CRL=0X88888888; //上拉输入
+//	ILI9341_DATA_PORT->CRH=0X88888888; //上拉输入
+//	ILI9341_DATA_PORT->ODR=0X0000;     //全部输出0
+         ILI9341_DATA_PORT->CRL &= ~(GPIO_CRL_MODE1 | GPIO_CRL_CNF1);
+         ILI9341_DATA_PORT->CRL |= GPIO_CRL_CNF1_1;
+    }
+}
 /**
   * @brief  用于 ILI9341 简单延时函数
   * @param  nCount ：延时计数值
@@ -70,6 +98,7 @@ static void ILI9341_Delay ( __IO uint32_t nCount )
 	ILI9341_CS_CLR;//开始片选      
 	ILI9341_DC_CLR;//写命令
 	ILI9341_RD_SET;//禁止读
+    ILI9341_CHANGE_IO(1);
 	DATAOUT(usCmd);//输出命令
 	ILI9341_WR_CLR;//写入开始
 	ILI9341_WR_SET;//写入结束
@@ -87,6 +116,7 @@ static void ILI9341_Delay ( __IO uint32_t nCount )
 	ILI9341_CS_CLR;//开始片选      
 	ILI9341_DC_SET;//写数据
 	ILI9341_RD_SET;//禁止读
+    ILI9341_CHANGE_IO(1);
 	DATAOUT(usData);//输出数据
 	ILI9341_WR_CLR;//写入开始
 	ILI9341_WR_SET;//写入结束
@@ -103,10 +133,10 @@ static void ILI9341_Delay ( __IO uint32_t nCount )
  uint16_t ILI9341_Read_Data ( void )
 {
 	uint16_t data;
- 	ILI9341_DATA_PORT->CRL=0X88888888; //上拉输入
-	ILI9341_DATA_PORT->CRH=0X88888888; //上拉输入
-	ILI9341_DATA_PORT->ODR=0X0000;     //全部输出0
-
+// 	ILI9341_DATA_PORT->CRL=0X88888888; //上拉输入
+//	ILI9341_DATA_PORT->CRH=0X88888888; //上拉输入
+//	ILI9341_DATA_PORT->ODR=0X0000;     //全部输出0
+    ILI9341_CHANGE_IO(0);
 	ILI9341_DC_SET;
 	ILI9341_WR_SET;
 
@@ -118,9 +148,9 @@ static void ILI9341_Delay ( __IO uint32_t nCount )
 	ILI9341_RD_SET;
 	ILI9341_CS_SET; 
 
-	ILI9341_DATA_PORT->CRL=0X33333333; // 上拉输出
-	ILI9341_DATA_PORT->CRH=0X33333333; // 上拉输出
-	ILI9341_DATA_PORT->ODR=0XFFFF;    //全部输出高
+//	ILI9341_DATA_PORT->CRL=0X33333333; // 上拉输出
+//	ILI9341_DATA_PORT->CRH=0X33333333; // 上拉输出
+//	ILI9341_DATA_PORT->ODR=0XFFFF;    //全部输出高
 	return data;  
 }
 
