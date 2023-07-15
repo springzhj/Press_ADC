@@ -126,23 +126,13 @@ int main(void)
 
     Printf_Charater();
 
-    //maopi = Read_Weigh();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//     // weight_get();
-//      LCD_SetTextColor(GREEN);
-//     // 使用c标准库把变量转化成字符串
-//      sprintf(dispBuff,"显示变量: %d ",weight_zheng);
-//      LCD_ClearLine(LINE(5));	//清除单行文字
-//      ILI9341_DispStringLine_EN_CH(LINE(5),dispBuff);
-//      LED1(0);
-//      HAL_Delay(500);
-//      LED1(1);
-//      HAL_Delay(500);
+
       LCD_Test();
     /* USER CODE END WHILE */
 

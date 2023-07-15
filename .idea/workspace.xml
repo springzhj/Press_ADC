@@ -21,19 +21,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14d58ddb-27ba-422c-9fd2-ad8c643c08e2" name="更改" comment="3.中文显示正常，使用记得回拉spi.c。">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/spi.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/spi.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/My_code/yehuo/bsp_ili9341_lcd.c" beforeDir="false" afterPath="$PROJECT_DIR$/My_code/yehuo/bsp_ili9341_lcd.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-78f707a056d5a75a1520.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Press_ADC.elf.dir/Core/Src/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Press_ADC.elf.dir/Core/Src/main.c.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Press_ADC.elf.dir/Core/Src/spi.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Press_ADC.elf.dir/Core/Src/spi.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Press_ADC.elf.dir/My_code/yehuo/bsp_ili9341_lcd.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Press_ADC.elf.dir/My_code/yehuo/bsp_ili9341_lcd.c.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Press_ADC.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Press_ADC.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Press_ADC.elf" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Press_ADC.elf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Press_ADC.hex" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Press_ADC.hex" afterDir="false" />
@@ -166,12 +158,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/My_code/yehuo/bsp_ili9341_lcd.c</url>
-          <line>216</line>
+          <line>191</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/My_code/yehuo/bsp_ili9341_lcd.c</url>
-          <line>546</line>
+          <line>521</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
